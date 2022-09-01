@@ -9,7 +9,9 @@
           <br>
           <p class="lead mb-0">Une platforme pour gérer les association de région Drâa-Tafilalet</p>
           <br>
-          <router-link to="/Signup" class="btn bg-white btn-lg rejoine rounded-5">Rejoignez-nous <FAIFatma   :icon="['fas' ,'angles-right']" class="icon alt" /></router-link>
+          <template v-if="!$store.state.user.isAuthenticated">
+            <router-link to="/Signup" class="btn bg-white btn-lg rejoine rounded-5">Rejoignez-nous <FAIFatma   :icon="['fas' ,'angles-right']" class="icon alt" /></router-link>
+          </template>
         </div>
       </div>
     </div>

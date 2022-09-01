@@ -4,7 +4,8 @@
         <div class="col-md-10 col-lg-8">
           <div class="header-section">
             <h2 class="title">Nos <span>partenaires</span></h2>
-            <p class="description">les associations marocaines reconnues d'utilité publique présente des associations de ce type classées par domaine d'activité et ne prétend pas être exhaustive.</p>
+            <p class="description">les associations marocaines reconnues d'utilité publique présente des associations de ce type classées par
+              domaine d'activité et ne prétend pas être exhaustive.</p>
           </div>
         </div>
       </div>
@@ -16,11 +17,15 @@
       :breakpoints="swiperOptions.breakpoints"
   >
 
-    <swiper-slide class="mt-4">
+    <swiper-slide class="mt-4"
+                  v-for="ass  in latestAssociations"
+                  v-bind:key="ass.id"
+    >
       <div class="card">
-      <img src="~@/assets/associations/assoc1.png" class="card-img-top" alt="...">
+<!--      <img :src="`/images/associations/`+index+`.png`" class="card-img-top" alt="...">-->
+        <img :src="ass.logoassociation" class="card-img-top" alt="...">
       <div class="card-body">
-        <h1 class="card-title text-center">Association Marocaine </h1>
+        <h1 class="card-title text-center">{{ass.nameassociation}} </h1>
         <br>
         <div class="col text-center">
           <button type="button" class="btn btn-dark">Plus Détails</button>
@@ -28,88 +33,6 @@
       </div>
      </div>
     </swiper-slide>
-    <swiper-slide width="300px" class="mt-4">
-      <div class="card">
-      <img src="~@/assets/associations/assoc1.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h1 class="card-title text-center">Fédération marocaine </h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide>
-      <div class="card mt-4">
-      <img src="~@/assets/associations/assoc2.png" class="card-img-top" alt="..." >
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide class="mt-4"><div class="card">
-      <img src="~@/assets/associations/assoc3.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide class="mt-4"><div class="card">
-      <img src="~@/assets/associations/assoc2.png" class="card-img-top" alt="..." >
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide class="mt-4"><div class="card">
-      <img src="~@/assets/associations/assoc1.png" class="card-img-top" alt="..." height="100PX"  >
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide class="mt-4"><div class="card">
-      <img src="~@/assets/associations/assoc2.png" class="card-img-top" alt="..."  height="100PX" >
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide class="mt-4"><div class="card">
-      <img src="~@/assets/associations/assoc1.png" class="card-img-top" alt="..." height="100PX" >
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-          <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
-    <swiper-slide class="mt-4"><div class="card">
-      <img src="~@/assets/associations/assoc3.jpg" class="card-img-top" alt="..." height="100PX"  >
-      <div class="card-body">
-        <h1 class="card-title text-center">Card title</h1>
-        <br>
-        <div class="col text-center">
-        <button type="button" class="btn btn-dark">Plus Détails</button>
-        </div>
-      </div>
-    </div></swiper-slide>
   </swiper>
   </section>
 </template>
@@ -122,6 +45,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
+
+// import axios
+import axios from "axios";
 export default {
   name: `sliderassoc`,
   components: {
@@ -135,6 +61,7 @@ export default {
   },
   data(){
     return {
+      i:1,
       swiperOptions: {
         breakpoints: {
           320: {
@@ -151,9 +78,29 @@ export default {
             spaceBetween: 30
           }
         }
-      }
+      },
+      latestAssociations:[]
     }
   },
+
+  mounted() {
+    this.getLatestAssociations();
+  },
+  methods: {
+    getLatestAssociations(){
+      axios
+          .get('/Add_AMO_API/Association/')
+          .then(response => {
+            this.latestAssociations = response.data.filter((el)=>  el.is_association_accepted==false);
+            console.log(this.latestAssociations)
+          })
+          .catch(error =>{
+            console.log(error)
+            console.log(this.latestAssociations)
+          })
+    }
+  }
+
 }
 </script>
 
@@ -169,7 +116,7 @@ button{
 }
 h1{
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   color: black;
 
 }

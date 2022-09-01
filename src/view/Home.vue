@@ -21,7 +21,7 @@ import sliderassoc from "@/components/sliderassoc";
 import Footer from "@/components/Footer";
 import posts from "@/components/posts";
 import servicecards from "@/components/servicecards";
-import aboutus from "@/components/aboutus";
+import Aboutus from "@/components/Aboutus";
 export default {
   name: `Home`,
   components: {
@@ -31,8 +31,10 @@ export default {
     Footer,
     posts,
     servicecards,
-    aboutus,
-
+    Aboutus,
+  },
+  mounted(){
+    document.title =  'Association maroc'
   },
 
 }

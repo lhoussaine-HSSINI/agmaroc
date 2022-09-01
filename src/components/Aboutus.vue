@@ -15,7 +15,8 @@
       </div>
       <div class="col-lg-6">
         <div class="py-lg-5">
-          <H1 class="mb-5 mt-2"> <span class="text-danger title">A</span>ssociation <span class="text-danger">M</span>arocaine </H1>
+          <h1 class="mb-5 mt-2">
+            <span class="text-danger title">A</span>ssociation <span class="text-danger">M</span>arocaine </h1>
           <p class="lead">La société El Mouatasim AI Center (Emaic) propose un site web pour gérer des associations de la région Drâa-Tafilalet, qui permet de gérer des événements complexes avec différents types de tickets et des participants externes, Aussi compter l’obtention des dons susceptibles de pouvoir vous assurer un volant financier confortable dans la conduite de vos projets, donc sera une clé d’un traitement rapide et efficace des données de tous vos membres, et donc un gain de temps non négligeable.</p>
         </div>
       </div>
@@ -25,9 +26,7 @@
 
 <script>
 export default {
-  name: `aboutus`,
-
-
+  name: `Aboutus`,
 }
 </script>
 

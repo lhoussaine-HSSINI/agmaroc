@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-fixed-top" :class="{change_color: scrollPosition > 50}">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand"> <img src="~@/assets/images/assoc_logo.svg"></router-link>
+      <router-link to="/" class="navbar-brand"> <img src="~@/assets/images/assoc_logo.svg" alt="logo"></router-link>
       <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"  data-bs-target="#navbarCollapse1">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse1">
         <div class="navbar-nav d-flex ms-auto">
           <router-link to="/" class="nav-item nav-link text-white"> Acceuil</router-link>
-          <router-link to="/" class="nav-item nav-link text-white">Activités</router-link>
+          <router-link to="/Activites" class="nav-item nav-link text-white">Activités</router-link>
           <router-link to="/" class="nav-item nav-link text-white">Contact</router-link>
         </div>
 
@@ -19,7 +19,12 @@
               <label class="button searchbutton bg-danger text-center rounded-5 btn" for="searchright"><span class="mglass">&#9906;</span></label>
             </form>
           </div>
-          <router-link to="/Login"><button type="button" class="btn btn-light me-sm-2 w-login rounded-5" id="connec">Connecter </button></router-link>
+          <template v-if="$store.state.user.isAuthenticated">
+            <router-link to="/MyAccount"><button type="button" class="btn btn-light me-sm-2 w-login rounded-5">Mon compte </button></router-link>
+          </template>
+          <template v-else>
+            <router-link to="/Login"><button type="button" class="btn btn-light me-sm-2 w-login rounded-5" id="connec">Connecter </button></router-link>
+          </template>
         </form>
       </div>
     </div>
@@ -158,7 +163,7 @@ nav{
 .nav-link {
   border: 2px solid transparent;
   border-bottom: 2px solid #FF0000;
-  margin-right: 0px;
+  margin-right: 0;
   padding-right: 30px;
   transition: border 0.3s ease;
 }
