@@ -5,11 +5,18 @@ import Signup from "../view/Signup.vue";
 import Activites from "../view/Activites.vue";
 import store from '../store'
 import MyAccount from '../view/MyAccount.vue'
+import Contact from '../view/Contact.vue'
+
 const routes = [
     {
         path: "/",
         name: "Home",
         component: Home,
+    },
+    {
+        path: "/Contact",
+        name: "Contact",
+        component: Contact,
     },
     {
         path: "/Login",

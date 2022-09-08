@@ -10,7 +10,7 @@
         </div>
       </div>
 
-  <div class="row ">
+  <div class="row">
     <div class="col-12 col-sm-6 col-lg-4  mt-4" v-for="post  in posts"
          v-bind:key="post.id" >
       <div class="card ">

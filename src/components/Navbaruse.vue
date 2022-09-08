@@ -9,7 +9,7 @@
         <div class="navbar-nav d-flex ms-auto">
           <router-link to="/" class="nav-item nav-link text-white"> Acceuil</router-link>
           <router-link to="/Activites" class="nav-item nav-link text-white">Activités</router-link>
-          <router-link to="/" class="nav-item nav-link text-white">Contact</router-link>
+          <router-link to="/Contact" class="nav-item nav-link text-white">Contact</router-link>
         </div>
 
         <form class="d-flex ms-auto mt-3 all">
@@ -23,7 +23,7 @@
             <router-link to="/MyAccount"><button type="button" class="btn btn-light me-sm-2 w-login rounded-5">Mon compte </button></router-link>
           </template>
           <template v-else>
-            <router-link to="/Login"><button type="button" class="btn btn-light me-sm-2 w-login rounded-5" id="connec">Connecter </button></router-link>
+            <router-link to="/Login"><button type="button" class="btn btn-light me-sm-2 w-login rounded-5" id="connec">Connecter</button></router-link>
           </template>
         </form>
       </div>
