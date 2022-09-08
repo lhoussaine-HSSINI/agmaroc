@@ -11,7 +11,7 @@
   <!-- c'est la partie des about  -->
   <aboutus></aboutus>
 
-  <comment></comment>
+<!--  <comment></comment>-->
   <Footer></Footer>
 </template>
 
@@ -23,11 +23,11 @@ import Footer from "@/components/Footer";
 import posts from "@/components/posts";
 import servicecards from "@/components/servicecards";
 import Aboutus from "@/components/Aboutus";
-import comment from "@/components/comment";
+// import comment from "@/components/comment";
 export default {
   name: `Home`,
   components: {
-    comment,
+    // comment,
     Navbar,
     Header,
     sliderassoc,
